@@ -81,17 +81,11 @@ print 'Gradient Boost:'
 
 # #############################################################################
 # Fit regression model
-lower_params = {'n_estimators': 200, 'learning_rate': 0.10, 'max_depth': 3, 'loss': 'quantile', 'alpha': 0.1,  'warm_start': True, 'verbose': 0}
 params = {'n_estimators': 200, 'learning_rate': 0.10, 'max_depth': 3, 'loss': 'ls', 'warm_start': True, 'verbose': 0}
-upper_params = {'n_estimators': 200, 'learning_rate': 0.10, 'max_depth': 3, 'loss': 'quantile', 'alpha': 0.9, 'warm_start': True, 'verbose': 0}
 
-lower_boost = GradientBoostingRegressor(**lower_params)
 boost = GradientBoostingRegressor(**params)
-upper_boost = GradientBoostingRegressor(**upper_params)
 
-lower_boost.fit(X_train, y_train)
 boost.fit(X_train, y_train)
-upper_boost.fit(X_train, y_train)
 
 prediction = boost.predict(X_test)
 mse = mean_squared_error(y_test, prediction)
@@ -154,7 +148,7 @@ def encode_brand(brand):
 
 	return brand_dict
 
-def boost_predict(model,lower_model,upper_model,brand,date,max_res,low_res,pixels,zoom_w,zoom_t,normal_focus,macro_focus,storage,weight,dimensions):
+def boost_predict(model,brand,date,max_res,low_res,pixels,zoom_w,zoom_t,normal_focus,macro_focus,storage,weight,dimensions):
 	d = {'Release date' : date, 'Max resolution' : max_res, 'Low resolution': low_res, 'Effective pixels': pixels,
 	'Zoom wide (W)': zoom_w, 'Zoom tele (T)': zoom_t, 'Normal focus range': normal_focus, 'Macro focus range': macro_focus,
 	'Storage included': storage, 'Weight': weight, 'Dimensions' : dimensions}
@@ -162,13 +156,9 @@ def boost_predict(model,lower_model,upper_model,brand,date,max_res,low_res,pixel
 	d.update(encoded_brand)
 	X = pd.DataFrame(d, index=[0])
 
-	y_lower = lower_model.predict(X)
 	y = model.predict(X)
-	y_upper = upper_model.predict(X)
 
-	return y_lower, y, y_upper
+	return y
 
-lower_boost.fit(X, y)
 boost.fit(X, y)
-upper_boost.fit(X, y)
-print boost_predict(boost,lower_boost,upper_boost,'Olympus',1997,1280,640.54,1,36,110,60,30,4,319,115)
+print boost_predict(boost,'Olympus',1997,1280,640.54,1,36,110,60,30,4,319,115)
