@@ -15,6 +15,9 @@ build
 .env.development.local
 .env.test.local
 .env.production.local
+clean_data.csv
+model_results.csv
+*.sav
 
 npm-debug.log*
 yarn-debug.log*
