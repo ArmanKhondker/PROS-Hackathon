@@ -100,24 +100,35 @@ class App extends Component {
   handleSumbitClick = () => {
     const inputValues = {
       model: this.state.model,
-      zoom: this.state.zoom,
-      releaseDate: this.state.releaseDate
+      zoomW: this.state.zoomW,
+      releaseDate: this.state.releaseDate,
+      maxRes: this.state.maxRes,
+      lowRes: this.state.lowRes,
+      effPix: this.state.effPix,
+      zoomT: this.state.zoomT,
+      normalFocus: this.state.normalFocus,
+      macroFocus: this.state.macroFocus,
+      storage: this.state.storage,
+      weight: this.state.weight,
+      dimension: this.state.dimension
     }
 
-    axios.get('http://localhost:5000/?model=MODEL&releaseDate=RELEASE&zoom=ZOOM').then(response => this.setState({estimatedPrice: response.data.price}))
+    axios.get('http://localhost:5000', {
+      params: inputValues
+    }).then(response => this.setState({estimatedPrice: response.data.price}))
     //get/post with params
-    console.log(this.state.model);
-    console.log(this.state.zoomW);
-    console.log(this.state.releaseDate);
-    console.log(this.state.effPix);
-    console.log(this.state.dimension);
-    console.log(this.state.lowRes);
-    console.log(this.state.macroFocus);
-    console.log(this.state.maxRes);
-    console.log(this.state.normalFocus);
-    console.log(this.state.storage);
-    console.log(this.state.weight);
-    console.log(this.state.zoomT);
+    // console.log(this.state.model);
+    // console.log(this.state.zoomW);
+    // console.log(this.state.releaseDate);
+    // console.log(this.state.effPix);
+    // console.log(this.state.dimension);
+    // console.log(this.state.lowRes);
+    // console.log(this.state.macroFocus);
+    // console.log(this.state.maxRes);
+    // console.log(this.state.normalFocus);
+    // console.log(this.state.storage);
+    // console.log(this.state.weight);
+    // console.log(this.state.zoomT);
 
   }
 
