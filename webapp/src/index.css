@@ -18,6 +18,10 @@ body {
   padding: 10px;
 }
 
+.divider {
+  height: 5vh;
+}
+
 .dropdownbox {
   padding: 10px;
   margin: 10px;
