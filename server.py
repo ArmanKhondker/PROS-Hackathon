@@ -52,10 +52,19 @@ def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_t
 def test():
 	args = request.args
 	output = {}
-	output['Model'] = args['model']
-	output['Release_date'] = args['releaseDate']
-	output['Zoom'] = args['zoom']
+	output['model'] = args['model']
+	output['zoomW'] = args['zoomW']
+	output['releaseDate'] = args['releaseDate']
 	output['price'] = 10
+	output['maxRes'] = args['maxRes']
+	output['lowRes'] = args['lowRes']
+	output['effPix'] = args['effPix']
+	output['zoomT'] = args['zoomT']
+	output['normalFocus'] = args['normalFocus']
+	output['macroFocus'] = args['macroFocus']
+	output['storage'] = args['storage']
+	output['weight'] = args['weight']
+	output['dimension'] = args['dimension']
 	return jsonify(output)
 
 if __name__ == '__main__':
