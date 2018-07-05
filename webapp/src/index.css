@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.top {
+  height: 5vh;
+ 
+  background-color:#428bca;
+}
+
+.enter_data {
+  padding: 10px;  
+}
+
+.dropdowns {
+  padding: 10px;
+}
+
+.dropdownbox {
+  padding: 10px;
+  margin: 10px;
+}
+
+.product_inputs {
+  padding: 20px;
+}
+
+.price_container {
+  height: 5vh;
+  background-color:#428bca; 
+}
+
+.pricing {
+  display: flex;
+  justify-content: center;
+}
+
+.price_text {
+ text-align: center;
+}
+
+.price_est {
+  text-align: center;
+  color: green;
+  font-size: 100px;
+}
+
