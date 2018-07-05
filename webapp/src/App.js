@@ -55,11 +55,7 @@ class App extends Component {
       releaseDate: this.state.releaseDate
     }
 
-    axios.get('http', {
-      params: {
-        inputValues
-      }
-    }).then(response => this.setState({estimatedPrice: response.data.price}))
+    axios.get('http://localhost:5000/?model=MODEL&releaseDate=RELEASE&zoom=ZOOM').then(response => this.setState({estimatedPrice: response.data.price}))
     //get/post with params
     // console.log(this.state.model);
     // console.log(this.state.zoom);
