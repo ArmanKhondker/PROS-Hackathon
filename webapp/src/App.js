@@ -19,7 +19,8 @@ class App extends Component {
       macroFocus: '',
       storage: '',
       weight: '',
-      dimension: ''
+      dimension: '',
+      sentimentScore: ''
       
     }
 
@@ -115,7 +116,7 @@ class App extends Component {
 
     axios.get('http://localhost:5000', {
       params: inputValues
-    }).then(response => this.setState({estimatedPrice: response.data.price}))
+    }).then(response => this.setState({estimatedPrice: response.data.price}, {sentimentScore: response.data.sentimentScore}))
     //get/post with params
     // console.log(this.state.model);
     // console.log(this.state.zoomW);
@@ -238,14 +239,15 @@ class App extends Component {
             </div>
         </div>
 
-        <div className = "price_container" ></div>
-           <div className = "pricing">
-              <div className = "price_text">The suggested price for this product is:</div>
-        </div>  
+       <div className = "price_container" ></div>
 
-        <div className = "pricing">
-            <div className = "price_est">${this.state.estimatedPrice}</div>
-        </div>
+          <div className = "pricing">
+      
+      <div className = "price_text">Sentiment Score for this product: {this.state.sentimentScore}</div>
+      
+      <div className = "price_text">Suggested price for this product is: ${this.state.estimatedPrice}</div>
+       
+          </div>
 
       {/* <div className='button__container'>
         <button className='button' onClick={this.handleClick}>Click Me</button>

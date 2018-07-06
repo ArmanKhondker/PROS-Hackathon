@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #ECE9D3;
 }
 
 .top {
@@ -12,6 +13,7 @@ body {
 
 .enter_data {
   padding: 10px;  
+  font-size: 25px;
 }
 
 .dropdowns {
@@ -39,15 +41,23 @@ body {
 .pricing {
   display: flex;
   justify-content: center;
+  
 }
 
 .price_text {
  text-align: center;
+ padding: 100px;
 }
 
 .price_est {
   text-align: center;
   color: green;
   font-size: 100px;
+}
+
+.getPriceBtn {
+  font-size: 15px;
+  margin: 10px;
+  padding: 10px;
 }
 
