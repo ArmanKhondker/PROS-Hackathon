@@ -60,9 +60,7 @@ def boost():
 	args = request.args
 	model = pickle.load(open('prediction_model.sav', 'rb'))
 	out = {}
-	out['price'] = boost_predict(model,args['model'],args['releaseDate'],args['maxRes'],args['lowRes'],
-		args['effPix'],args['zoomW'],args['zoomT'],args['normalFocus'],args['macroFocus'],
-		args['storage'],args['weight'],args['dimension'])[0]
+	out['price'] = boost_predict(model,args['model'],args['releaseDate'],args['maxRes'],args['lowRes'],args['effPix'],args['zoomW'],args['zoomT'],args['normalFocus'],args['macroFocus'],args['storage'],args['weight'],args['dimension'])[0]
 	out['sentimentScore'] = loop(videos[args['model']])
 	return jsonify(out)
 
