@@ -18,6 +18,7 @@ build
 clean_data.csv
 model_results.csv
 *.sav
+*.pyc
 
 npm-debug.log*
 yarn-debug.log*

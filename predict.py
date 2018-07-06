@@ -30,6 +30,6 @@ def boost_predict(model,brand,date,max_res,low_res,pixels,zoom_w,zoom_t,normal_f
 	d.update(encoded_brand)
 	X = pd.DataFrame(d, index=[0])
 
-	y = model.predict(X)
+	y = model.predict(X).round(2)
 
 	return y
