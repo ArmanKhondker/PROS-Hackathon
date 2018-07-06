@@ -152,6 +152,8 @@ class App extends Component {
                 <option value="Nikon">Nikon</option>
                 <option value="Canon">Canon</option>
                 <option value="Sony">Sony</option>
+                <option value="Panasonic">Panasonic</option>
+                <option value="Olympus">Olympus</option>
             </select>
 
             <select name="choose_release_date" className = "dropdownbox" onChange={this.handleDateChange}>
@@ -243,9 +245,9 @@ class App extends Component {
 
           <div className = "pricing">
       
-      <div className = "price_text">Sentiment Score for this product: {this.state.sentimentScore}</div>
+      <div className = "price_text">Sentiment Score: {this.state.sentimentScore}</div>
       
-      <div className = "price_text">Suggested price for this product is: ${this.state.estimatedPrice}</div>
+      <div className = "price_text">Suggested price: ${this.state.estimatedPrice}</div>
        
           </div>
 

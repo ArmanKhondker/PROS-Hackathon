@@ -47,6 +47,7 @@ body {
 .price_text {
  text-align: center;
  padding: 100px;
+ font-size: 40px;
 }
 
 .price_est {
