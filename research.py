@@ -9,7 +9,8 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn import linear_model, svm, neighbors, naive_bayes, tree, neural_network
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import GradientBoostingRegressor, AdaBoostRegressor
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.decomposition import PCA
 
 # Load data
@@ -85,9 +86,13 @@ print 'Gradient Boost:'
 
 # #############################################################################
 # Fit regression model
-params = {'n_estimators': 200, 'learning_rate': 0.10, 'max_depth': 3, 'loss': 'ls', 'warm_start': True, 'verbose': 0}
+params = {'n_estimators': 200, 'learning_rate': 0.10, 'max_depth': 3, 'loss': 'ls', 'warm_start': False, 'verbose': 0}
 
 boost = GradientBoostingRegressor(**params)
+
+# Try AdaBoost?
+# ada_params = {'base_estimator':boost, 'n_estimators':100, 'learning_rate':0.05, 'loss':'linear', 'random_state':None}
+# ada_boost = AdaBoostRegressor(**ada_params)
 
 boost.fit(X_train, y_train)
 
