@@ -1,11 +1,12 @@
 """
 Server to send data from Python backend to React frontend
-Sending JSON to frontend: https://stackoverflow.com/questions/13081532/return-json-response-from-flask-view
-Reading JSON from frontend: https://stackoverflow.com/questions/30673079/send-json-to-flask-using-requests
 """
 from datetime import timedelta  
 from flask import Flask, request, jsonify, make_response, current_app
 from functools import update_wrapper
+from predict import boost_predict
+import pickle
+
 app = Flask(__name__)
 
 def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_to_all=True, automatic_options=True):  
@@ -49,14 +50,15 @@ def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_t
 
 @app.route('/')
 @crossdomain(origin='*')
-def test():
+def boost():
 	args = request.args
-	output = {}
-	output['Model'] = args['model']
-	output['Release_date'] = args['releaseDate']
-	output['Zoom'] = args['zoom']
-	output['price'] = 10
-	return jsonify(output)
+	model = pickle.load(open('prediction_model.sav', 'rb'))
+	out = {}
+	out['price'] = boost_predict(model,args['model'],args['releaseDate'],args['maxRes'],args['lowRes'],
+		args['effPix'],args['zoomW'],args['zoomT'],args['normalFocus'],args['macroFocus'],
+		args['storage'],args['weight'],args['dimension'])[0]
+	out['favor'] = 0.5
+	return jsonify(out)
 
 if __name__ == '__main__':
    app.run()
