@@ -4,7 +4,6 @@ import sys
 import nltk
 import csv
 import argparse
-from io import open
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from apiclient.discovery import build_from_document
 from apiclient.errors import HttpError
@@ -82,14 +81,20 @@ def loop(idlist):
             video_comment_threads = get_comment_threads(youtube, args.videoid)
             sia = SentimentIntensityAnalyzer()
             
-            total = 0
-            count = 0 
-            for comment in video_comment_threads:
-                score = sia.polarity_scores(comment)
-                count= count +1
-                total= total + score["compound"]
-            loopcounter = loopcounter + 1
-            totalOfTotals = totalOfTotals + (total/count)
+            with open('comments{0}.csv'.format(args.videoid), 'w', encoding='utf-8') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["Comment", "Sentiment Score"])
+                total = 0
+                count = 0 
+                for comment in video_comment_threads:
+                    score = sia.polarity_scores(comment)
+                    count= count +1
+                    total= total + score["compound"]
+                    writer.writerow([comment, score["compound"]])
+               # writer.writerow(["Average Sentiment Score =", total/count])
+                loopcounter = loopcounter + 1
+                totalOfTotals = totalOfTotals + (total/count)
+            print("Logged sentiments of {0} comments to comments.csv".format(len(video_comment_threads)))
             print("The Average Sentiment Score of this video is {0}".format(total/count))
         except HttpError as e:
             print("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
