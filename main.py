@@ -11,7 +11,6 @@ from oauth2client.file import Storage
 from oauth2client.tools import argparser, run_flow
 
 CLIENT_SECRETS_FILE = "client_secrets.json"
-
 YOUTUBE_READ_WRITE_SSL_SCOPE = "https://www.googleapis.com/auth/youtube.force-ssl"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
