@@ -1,3 +1,5 @@
+![build-passing](https://img.shields.io/badge/build-passing-brightgreen) ![test-passing](https://img.shields.io/badge/test-passing-brightgreen)
+
 # PROS Hackathon 2018 Project
 
 Our assignment was to **“Develop a B2B pricing solution that can leverage competitor prices based upon pricing data repositories, screen-scraping tools, indexes, or other data sources in dynamic and sustainable manner.”** Our solution was two-pronged, consisting of a machine learning based estimator and a sentiment analyzer. Our estimator estimated the market valuation of a product based on technical features of the product. Our sentiment analyzer parsed YouTube review video comments to determine public sentiment of a brand. This assigns a measurable value to the online research process that consumers (especially millenials) carry out before making a purchase. We connected this backend to a React frontend, via a Flask REST API.
